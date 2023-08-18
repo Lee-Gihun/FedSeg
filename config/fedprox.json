@@ -1,0 +1,45 @@
+{
+    "data_setups":{
+        "root": "./data",
+        "dataset_name": "acdc",
+        "batch_size": 8,
+        "n_clients": 4
+    },
+    "model_setups":{
+        "name": "manet",
+        "params": {
+            "encoder_name": "efficientnet-b0",
+            "encoder_weights": null,
+            "classes": 19
+        }
+    },
+    "train_setups":{
+        "algo": {
+            "name": "fedprox",
+            "params": {
+                "mu": 1.0
+            }
+        },
+        "scenario": {
+            "n_rounds": 300,
+            "sample_ratio": 0.75,
+            "local_epochs": 5,
+            "device": "cuda:0"
+        },
+        "optimizer":{
+            "name": "sgd",
+            "params": {"lr": 0.015, "momentum":0.9, "weight_decay": 1e-5}
+        },
+        "scheduler":{
+            "enabled": true,
+            "name": "step",
+            "params": {"gamma":0.99, "step_size": 1}
+        },
+        "seed": 2023
+    },
+    "wandb_setups":{
+        "project": "FL_Segmentation",
+        "group": "DynamoFL",
+        "name": "fedprox10"
+    }
+}
